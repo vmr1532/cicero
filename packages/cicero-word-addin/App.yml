@@ -1,0 +1,19 @@
+### YamlMime:Sample
+sample:
+- name: Accord Project Cicero Word Add-in
+  path: ''
+  description: This is a Word task pane add-in creates Accord Project Cicero templates
+  readme: ''
+  generateZip: FALSE
+  isLive: TRUE
+  technologies:
+  - Office Add-in
+  azureDeploy: ''
+  author: accordproject
+  platforms: []
+  languages:
+  - JavaScript
+  extensions:
+    products:
+    - Word
+    scenarios: []

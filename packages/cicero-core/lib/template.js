@@ -144,7 +144,7 @@ class Template {
         const parser = new nearley.Parser(nearley.Grammar.fromCompiled(templateGrammar));
         parser.feed(templatizedGrammar);
         if (parser.results.length !== 1) {
-            throw new Error('Ambigious parse!');
+            throw new Error('Ambiguous parse!');
         }
 
         // parse the template grammar
