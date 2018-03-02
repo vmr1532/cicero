@@ -2,6 +2,18 @@ env:
     es6: true
     node: true
     mocha: true
+    browser: true
+globals:
+    document: false
+    escape: false
+    navigator: false
+    unescape: false
+    window: false
+    describe: true
+    before: true
+    it: true
+    expect: true
+    sinon": true
 extends: 'eslint:recommended'
 parserOptions:
     ecmaVersion: 8
