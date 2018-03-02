@@ -69,7 +69,7 @@ function displayAllBindings() {
         } else {
           // Get selected data.
           var dataValue = asyncResult.value;
-          write('Selected data is ' + dataValue);
+          write(dataValue);
         }
       });
   }

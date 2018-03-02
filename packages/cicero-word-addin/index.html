@@ -44,103 +44,33 @@
   <div id="content">
     <div>  
       <center>
-         <div class="ms-SearchBox">
-              <label class="ms-SearchBox-label"><i class="ms-SearchBox-icon ms-Icon ms-Icon--search"></i>Search publications</label>
-              <input class="ms-SearchBox-field"></label>
-              <button class="ms-SearchBox-closeButton"><i class="ms-Icon ms-Icon--x"></i></button>
+          <div class="ms-TextField">
+              <label class="ms-Label">Template Library URL</label>
+              <input class="ms-TextField-field" type="text" value="github://accordproject/cicero-template-library" placeholder="">
+          <button class="ms-Button">
+              <span class="ms-Button-label">Connect</span> 
+              </button>
           </div>
       </center>
       
-      <div id="navigation">
-        <ul class="ms-Pivot">
-          <li class="ms-Pivot-link is-selected">All Publications</li>
-          <li class="ms-Pivot-link">My Library</li>
-          <li class="ms-Pivot-link ms-Pivot-link--overflow">
-            <i class="ms-Pivot-ellipsis ms-Icon ms-Icon--ellipsis"></i>
-          </li>
-        </ul>
+      <h2>Current Selection</h2>
+      <div class="ms-TextField is-disabled">
+          <label id="display-data" class="ms-Label"></label>
       </div>
-      
-      <div>
-          <div class="ms-font-m">Sort by</div>
-          <div class="ms-Dropdown" tabindex="0" style="width:80%">
-            <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--caretDown"></i>
-            <select class="ms-Dropdown-select" >
-              <option>Year</option>
-              <option>Publisher</option>
-              <option>Author</option>
-            </select>
-          </div>
-      </div>
-      
-      <ul class="ms-List">
-          <div class="ms-ListItem is-selected is-selectable">
-            <span class="ms-ListItem-primaryText">Lezama Humberto</span>
-            <span class="ms-ListItem-secondaryText">Customizing CRM</span>
-            <span class="ms-ListItem-tertiaryText">Contoso Publications</span>
-            <span class="ms-ListItem-metaText">2015</span>
-            <div class="ms-ListItem-selectionTarget js-toggleSelection"></div>
-            <div class="ms-ListItem-actions">
-            </div>
-          </div>
-          
-          <div class="ms-ListItem is-selected is-selectable">
-            <span class="ms-ListItem-primaryText">Lewis, Lezama et al</span>
-            <span class="ms-ListItem-secondaryText">Electrochemical Studies</span>
-            <span class="ms-ListItem-tertiaryText">Contoso Publications</span>
-            <span class="ms-ListItem-metaText">2013</span>
-            <div class="ms-ListItem-selectionTarget js-toggleSelection"></div>
-            <div class="ms-ListItem-actions">
-            </div>
-          </div>
-          
-          <div class="ms-ListItem is-selectable">
-            <span class="ms-ListItem-primaryText">Jimenez, Lezama et al</span>
-            <span class="ms-ListItem-secondaryText">Office Extensibilit</span>
-            <span class="ms-ListItem-tertiaryText">Contoso Publications</span>
-            <span class="ms-ListItem-metaText">2012</span>
-            <div class="ms-ListItem-selectionTarget js-toggleSelection"></div>
-            <div class="ms-ListItem-actions">
-            </div>
-          </div>
-                    
-          <div class="ms-ListItem is-selectable">
-            <span class="ms-ListItem-primaryText">Davids Tristan</span>
-            <span class="ms-ListItem-secondaryText">Word Programming</span>
-            <span class="ms-ListItem-tertiaryText">Contoso Publications</span>
-            <span class="ms-ListItem-metaText">2010</span>
-            <div class="ms-ListItem-selectionTarget js-toggleSelection"></div>
-            <div class="ms-ListItem-actions">
-            </div>
-          </div>        
-      </ul>
-      
-      <br />
+      <h2>Template Actions</h2>
       <center>
-          <button class="ms-Button" id="set-data">
-              <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-              <span class="ms-Button-label">Insert Reference</span>
-              <span class="ms-Button-description">Insert Reference into document</span>
-          </button>
           <button class="ms-Button" id="bind">
              <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-             <span class="ms-Button-label">Bind</span>
-             <span class="ms-Button-description">Bind</span>
+             <span class="ms-Button-label">Create or Update</span>
+             <span class="ms-Button-description">Create</span>
          </button>
-         <button class="ms-Button" id="displayAllBindings">
+         <br />
+         <button class="ms-Button" id="delete">
             <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-            <span class="ms-Button-label">displayAllBindings</span>
-            <span class="ms-Button-description">displayAllBindings</span>
+            <span class="ms-Button-label">Delete</span>
+            <span class="ms-Button-description">Create</span>
         </button>
-        <button class="ms-Button" id="clearBinding">
-          <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-          <span class="ms-Button-label">clearBinding</span>
-          <span class="ms-Button-description">clearBinding</span>
-      </button>
       </center>
-      <div>
-          <p id="display-data"></p>
-      </div>
     </div>
   </div>
 </body>
