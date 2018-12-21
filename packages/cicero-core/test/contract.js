@@ -14,8 +14,8 @@
 
 'use strict';
 
-const Template = require('../lib/template');
-const Contract = require('../lib/contract');
+const Template = require('../lib/template/template');
+const Contract = require('../lib/contract/contract');
 
 const chai = require('chai');
 const fs = require('fs');

@@ -14,7 +14,15 @@
 
 'use strict';
 
-const Metadata = require('./metadata');
+const Metadata = require('./metadata/metadata');
+const Util = require('../common/util');
+const logger = require('../common/logger');
+const CiceroModelManager = require('./model/ciceromodelmanager');
+const ScriptManager = require('./logic/scriptmanager');
+const DefaultArchiveLoader = require('../loaders/defaultarchiveloader');
+const templateGrammar = require('./grammar/tdl.js');
+const GrammarVisitor = require('./grammar/grammarvisitor');
+
 const fs = require('fs');
 const fsPath = require('path');
 const JSZip = require('jszip');
@@ -22,25 +30,22 @@ const minimatch = require('minimatch');
 const glob = require('glob');
 const xregexp = require('xregexp');
 const languageTagRegex = require('ietf-language-tag-regex');
-const Factory = require('composer-concerto').Factory;
-const RelationshipDeclaration = require('composer-concerto').RelationshipDeclaration;
-const Introspector = require('composer-concerto').Introspector;
-const CiceroModelManager = require('./ciceromodelmanager');
-const ScriptManager = require('./scriptmanager');
-const DefaultArchiveLoader = require('./loaders/defaultarchiveloader');
-const Serializer = require('composer-concerto').Serializer;
-const Writer = require('composer-concerto-tools').Writer;
-const logger = require('./logger');
-const nearley = require('nearley');
-const compile = require('nearley/lib/compile');
-const generate = require('nearley/lib/generate');
-const nearleyGrammar = require('nearley/lib/nearley-language-bootstrapped');
-const templateGrammar = require('./tdl.js');
-const GrammarVisitor = require('./grammarvisitor');
 const uuid = require('uuid');
 const nunjucks = require('nunjucks');
 const crypto = require('crypto');
 const stringify = require('json-stable-stringify');
+
+const nearley = require('nearley');
+const compile = require('nearley/lib/compile');
+const generate = require('nearley/lib/generate');
+const nearleyGrammar = require('nearley/lib/nearley-language-bootstrapped');
+
+const Factory = require('composer-concerto').Factory;
+const RelationshipDeclaration = require('composer-concerto').RelationshipDeclaration;
+const Introspector = require('composer-concerto').Introspector;
+const Serializer = require('composer-concerto').Serializer;
+const Writer = require('composer-concerto-tools').Writer;
+
 
 // This required because only compiled nunjucks templates are supported browser-side
 // https://mozilla.github.io/nunjucks/api.html#browser-usage
@@ -54,8 +59,6 @@ const ENCODING = 'utf8';
 // Matches 'sample.txt' or 'sample_TAG.txt' where TAG is an IETF language tag (BCP 47)
 const IETF_REGEXP = languageTagRegex({ exact: false }).toString().slice(1,-2);
 const SAMPLE_FILE_REGEXP = xregexp('sample(_(' + IETF_REGEXP + '))?.txt$');
-
-// This code is derived from BusinessNetworkDefinition in Hyperledger Composer composer-common.
 
 /**
  * A template for a legal clause or contract. A Template has a template model, request/response transaction types,
@@ -91,30 +94,6 @@ class Template {
     }
 
     /**
-     * Check to see if a ClassDeclaration is an instance of the specified fully qualified
-     * type name.
-     * @param {ClassDeclaration} classDeclaration The class to test
-     * @param {String} fqt The fully qualified type name.
-     * @returns {boolean} True if classDeclaration an instance of the specified fully
-     * qualified type name, false otherwise.
-     */
-    static instanceOf(classDeclaration, fqt) {
-        // Check to see if this is an exact instance of the specified type.
-        if (classDeclaration.getFullyQualifiedName() === fqt) {
-            return true;
-        }
-        // Now walk the class hierachy looking to see if it's an instance of the specified type.
-        let superTypeDeclaration = classDeclaration.getSuperTypeDeclaration();
-        while (superTypeDeclaration) {
-            if (superTypeDeclaration.getFullyQualifiedName() === fqt) {
-                return true;
-            }
-            superTypeDeclaration = superTypeDeclaration.getSuperTypeDeclaration();
-        }
-        return false;
-    }
-
-    /**
      * Returns the template model for the template
      * @throws {Error} if no template model is found, or multiple template models are found
      * @returns {ClassDeclaration} the template model for the template
@@ -128,7 +107,7 @@ class Template {
         }
 
         const templateModels = this.getIntrospector().getClassDeclarations().filter((item) => {
-            return !item.isAbstract() && Template.instanceOf(item,modelType);
+            return !item.isAbstract() && Util.instanceOf(item,modelType);
         });
 
         if (templateModels.length > 1) {
@@ -236,7 +215,7 @@ class Template {
             },
             autoescape: false  // Required to allow nearley syntax strings
         });
-        const combined = nunjucks.render('template.ne', parts);
+        const combined = nunjucks.render('./grammar/template.ne', parts);
         logger.debug('Generated template grammar' + combined);
 
         this.setGrammar(combined);

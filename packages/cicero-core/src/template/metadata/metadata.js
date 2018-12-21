@@ -14,11 +14,9 @@
 
 'use strict';
 
-const logger = require('./logger');
-const ciceroVersion = require('../package.json').version;
+const logger = require('../../common/logger');
+const ciceroVersion = require('../../../package.json').version;
 const semver = require('semver');
-
-// This code is derived from BusinessNetworkMetadata in Hyperleger Composer composer-common.
 
 const templateTypes = {
     CONTRACT: 0,
@@ -47,7 +45,6 @@ class Metadata {
      * @param {object} packageJson  - the JS object for package.json (required)
      * @param {String} readme  - the README.md for the template (may be null)
      * @param {object} samples - the sample text for the template in different locales,
-     * @param {object} request - the JS object for the sample request
      * represented as an object whose keys are the locales and whose values are the sample text.
      * For example:
      *  {
@@ -56,7 +53,8 @@ class Metadata {
      *      fr: 'exemple de texte français'
      *  }
      * Locale keys (with the exception of default) conform to the IETF Language Tag specification (BCP 47).
-     * THe `default` key represents sample template text in a non-specified language, stored in a file called `sample.txt`.
+     * The `default` key represents sample template text in a non-specified language, stored in a file called `sample.txt`.
+     * @param {object} request - the JS object for the sample request
      */
     constructor(packageJson, readme, samples, request) {
         const method = 'constructor';
@@ -275,12 +273,15 @@ class Metadata {
 
     /**
      * Return new Metadata for a target language
-     * @param {string} language - the target language
+     * @param {string} [language] - the target language, if not specified, defaults to 'ergo'
      * @return {object} the new Metadata
      */
     createTargetMetadata(language) {
         //  Defaults to ERGO
-        if (language === undefined || language === null) { language = 'ergo'; }
+        if (!language) {
+            language = 'ergo';
+        }
+
         //  Has to be either JAVASCRIPT or ERGO
         if (language !== 'javascript' && language !== 'ergo') {
             throw new Error(`language should be either 'ergo' or 'javascript' but is '${language}'`);

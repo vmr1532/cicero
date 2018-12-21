@@ -21,7 +21,7 @@ chai.use(require('chai-things'));
 chai.use(require('chai-as-promised'));
 
 const nearley = require('nearley');
-const grammar = require('../lib/tdl.js');
+const grammar = require('../lib/template/grammar/tdl.js');
 let parser;
 
 describe('Static Parser', () => {

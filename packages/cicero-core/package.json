@@ -16,7 +16,7 @@
   "main": "index.js",
   "scripts": {
     "webpack": "webpack --config webpack.config.js --mode production",
-    "build": "babel src -d lib --copy-files && nearleyc ./src/tdl.ne -o ./lib/tdl.js && node scripts/nunjucks-precompile.js",
+    "build": "babel src -d lib --copy-files && nearleyc ./src/template/grammar/tdl.ne -o ./lib/template/grammar/tdl.js && node scripts/nunjucks-precompile.js",
     "prepublishOnly": "npm run build && npm run webpack",
     "prepare": "npm run build",
     "pretest": "npm run lint",
@@ -114,9 +114,9 @@
       "lib/**/*.js"
     ],
     "exclude": [
-      "lib/tdl.js",
+      "lib/template/grammar/tdl.js",
       "scripts/**/*.js",
-      "lib/compiled_template.js"
+      "lib/template/grammar/compiled_template.js"
     ],
     "all": true,
     "check-coverage": true,

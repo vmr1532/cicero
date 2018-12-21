@@ -14,7 +14,7 @@
 
 'use strict';
 
-const logger = require('./logger');
+const logger = require('../common/logger');
 const crypto = require('crypto');
 const RelationshipDeclaration = require('composer-concerto').RelationshipDeclaration;
 

@@ -17,8 +17,8 @@
 const chai = require('chai');
 const fs = require('fs');
 
-const Script = require('../lib/script');
-const CiceroModelManager = require('../lib/ciceromodelmanager');
+const Script = require('../lib/template/logic/script');
+const CiceroModelManager = require('../lib/template/model/ciceromodelmanager');
 
 const modelManager = new CiceroModelManager();
 const jsSample = fs.readFileSync('./test/data/test.js','utf8');

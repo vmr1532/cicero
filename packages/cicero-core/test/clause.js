@@ -14,8 +14,8 @@
 
 'use strict';
 
-const Template = require('../lib/template');
-const Clause = require('../lib/clause');
+const Template = require('../lib/template/template');
+const Clause = require('../lib/clause/clause');
 
 const chai = require('chai');
 const fs = require('fs');

@@ -14,7 +14,7 @@
 
 'use strict';
 
-const Template = require('../lib/template');
+const Template = require('../lib/template/template');
 const nearley = require('nearley');
 const fs = require('fs');
 const archiver = require('archiver');

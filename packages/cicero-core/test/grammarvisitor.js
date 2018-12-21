@@ -14,11 +14,11 @@
 
 'use strict';
 
-const CiceroModelManager = require('../lib/ciceromodelmanager');
+const CiceroModelManager = require('../lib/template/model/ciceromodelmanager');
 const Writer = require('composer-concerto-tools').Writer;
-const GrammarVisitor = require('../lib/grammarvisitor');
-const Template = require('../lib/template');
-const logger = require('../lib/logger');
+const GrammarVisitor = require('../lib/template/grammar/grammarvisitor');
+const Template = require('../lib/template/template');
+const logger = require('../lib/common/logger');
 const nunjucks = require('nunjucks');
 
 const fs = require('fs');

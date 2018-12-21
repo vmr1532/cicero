@@ -15,8 +15,8 @@
 'use strict';
 
 const NodeCache = require('node-cache');
-const Template = require('./template');
-const logger = require('./logger');
+const Template = require('../template/template');
+const logger = require('../common/logger');
 const rp = require('request-promise-native');
 const crypto = require('crypto');
 const stringify = require('json-stable-stringify');

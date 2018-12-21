@@ -15,7 +15,7 @@
 'use strict';
 
 const Field = require('composer-concerto').Field;
-const CiceroModelManager = require('./ciceromodelmanager');
+const CiceroModelManager = require('../model/ciceromodelmanager');
 const ModelFile = require('composer-concerto').ModelFile;
 const RelationshipDeclaration = require('composer-concerto').RelationshipDeclaration;
 const EnumDeclaration = require('composer-concerto').EnumDeclaration;

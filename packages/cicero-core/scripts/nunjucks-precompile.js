@@ -24,5 +24,5 @@ const env = new nunjucks.Environment(new nunjucks.FileSystemLoader('../'), {
     },
     autoescape: false  // Required to allow nearley syntax strings
 });
-const compiled = nunjucks.precompile('src/template.ne', {env, name: 'template.ne' });
-fs.writeFileSync(path.resolve(__dirname,'../lib/compiled_template.js'),compiled);
+const compiled = nunjucks.precompile('src/template/grammar/template.ne', {env, name: 'template.ne' });
+fs.writeFileSync(path.resolve(__dirname,'../lib/template/grammar/compiled_template.js'),compiled);
