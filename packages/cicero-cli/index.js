@@ -19,6 +19,8 @@ const Logger = require('@accordproject/ergo-compiler').Logger;
 const Commands = require('./lib/commands');
 
 require('yargs')
+    .scriptName('cicero')
+    .usage('$0 <cmd> [args]')
     .command('parse', 'parse sample text using a template', (yargs) => {
         yargs.option('template', {
             describe: 'path to the directory with the template',
@@ -283,4 +285,5 @@ require('yargs')
         alias: 'v',
         default: false
     })
+    .help()
     .argv;
